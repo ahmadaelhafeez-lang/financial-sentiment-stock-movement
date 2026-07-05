@@ -1,0 +1,16 @@
+item,value
+tweets_rows_raw,80793
+tweets_rows_after_cleaning,80510
+tweets_unique_tickers,25
+price_rows_raw,6300
+price_unique_tickers,25
+financial_phrasebank_rows,4840
+daily_sentiment_rows,5910
+final_modeling_rows_after_threshold,4720
+final_unique_tickers,25
+final_date_min,2021-10-27
+final_date_max,2022-09-28
+target_threshold,0.005
+positive_class_ratio,0.47415254237288135
+RUN_FINBERT,True
+FINBERT_LIMIT,
