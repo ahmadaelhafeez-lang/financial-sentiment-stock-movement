@@ -1,0 +1,77 @@
+// Financial Market Sentiment Analysis Database Schema
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table DimDate {
+  id int [pk, increment]
+  date date
+  year int
+  month int
+  day int
+  quarter int
+  day_of_week int
+  note: 'Time dimension for daily granularity'
+}
+
+Table DimStock {
+  id int [pk, increment]
+  stock_name varchar
+  sector varchar
+  industry varchar
+  note: 'Stock dimension containing company information'
+}
+
+Table FactStockPrice {
+  id int [pk, increment]
+  date_id int [ref: > DimDate.id]
+  stock_id int [ref: > DimStock.id]
+  open decimal
+  high decimal
+  low decimal
+  close decimal
+  adj_close decimal
+  volume bigint
+  note: 'Daily stock price and volume data'
+}
+
+Table FactTweet {
+  id int [pk, increment]
+  date_id int [ref: > DimDate.id]
+  stock_id int [ref: > DimStock.id]
+  tweet_id varchar
+  text text
+  cleaned_text text
+  vader_compound decimal
+  vader_positive decimal
+  vader_negative decimal
+  vader_neutral decimal
+  textblob_polarity decimal
+  textblob_subjectivity decimal
+  note: 'Twitter data with sentiment analysis scores'
+}
+
+Table FactDailySentiment {
+  id int [pk, increment]
+  date_id int [ref: > DimDate.id]
+  stock_id int [ref: > DimStock.id]
+  tweet_count int
+  avg_vader_compound decimal
+  avg_vader_positive decimal
+  avg_vader_negative decimal
+  avg_vader_neutral decimal
+  avg_textblob_polarity decimal
+  avg_textblob_subjectivity decimal
+  note: 'Aggregated daily sentiment metrics'
+}
+
+Table FactStockReturns {
+  id int [pk, increment]
+  date_id int [ref: > DimDate.id]
+  stock_id int [ref: > DimStock.id]
+  daily_return decimal
+  price_lag1 decimal
+  price_lag2 decimal
+  price_lag3 decimal
+  price_rolling_mean_5 decimal
+  price_rolling_mean_10 decimal
+  note: 'Calculated stock returns and technical indicators'
+} 
