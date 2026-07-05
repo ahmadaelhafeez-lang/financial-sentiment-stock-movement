@@ -14,4 +14,5 @@ The study uses:
 - final modeling table
 - experimental output files
 
-Kaggle dataset link: to be added.
+Kaggle dataset link:
+https://www.kaggle.com/datasets/ahmadabdelhafeez111/financial-sentiment-stock-movement-prediction/data
